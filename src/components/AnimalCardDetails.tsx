@@ -14,17 +14,20 @@ import IAnimal from '../interfaces/IAnimal';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 
 interface IProps {
-  animal: IAnimal;
+  animal: IAnimal | undefined;
   close: () => void;
   setToast: (isSuccess: boolean, message: string, isHidden: boolean) => void;
   loadAnimals: (callback?: () => void) => void;
 }
 
 const AnimalCardDetails = (props: IProps) => {
-  const {
-    animal: { id, type, picture, description, created_at, reports },
-    close,
-  } = props;
+  const { animal, close } = props;
+
+  if (!animal) {
+    return <></>;
+  }
+
+  const { id, type, picture, description, created_at, reports } = animal;
 
   const onDelete = (animalId: number, e: any) => {
     e.stopPropagation();

@@ -65,8 +65,10 @@ export default class AnimalCard extends Component<IProps> {
     const { id, type, picture, description, created_at, reports } = animal;
 
     return (
-      <button
-        type="button"
+      <div
+        role="button"
+        tabIndex={0}
+        onKeyDown={() => setAnimal(animal)}
         onClick={() => setAnimal(animal)}
         className="animal-card"
       >
@@ -120,7 +122,7 @@ export default class AnimalCard extends Component<IProps> {
             </button>
           </div>
         </div>
-      </button>
+      </div>
     );
   }
 }
